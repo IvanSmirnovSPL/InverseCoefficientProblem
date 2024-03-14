@@ -5,6 +5,8 @@ import numpy as np
 
 from collections import namedtuple
 
+from examples.time_measure import time_measure
+
 
 @jax.jit
 def get_sd_and_norm(
@@ -93,7 +95,7 @@ trOptResult = namedtuple(
     ["x", "f", "f_history", "x_history", "grad_history", "niter", "status"],
 )
 
-
+@time_measure
 def optimize_trust_region(
     f,
     x_0,

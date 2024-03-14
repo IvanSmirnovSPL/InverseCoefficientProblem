@@ -186,7 +186,7 @@ class Problem:
 
         def MSELoss(params):
             afc = afc_function(frequencies, params)
-            return jnp.mean((afc - reference_afc) ** 2)
+            return jnp.mean((jnp.linalg.norm(afc, axis=1, ord=2) - reference_afc[:, 1]) ** 2)
 
         return MSELoss
 
