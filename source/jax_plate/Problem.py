@@ -106,7 +106,7 @@ class Problem:
             e = self.e
             # params_to_physical is a function D_ij = D_ij(theta), beta_ij = beta_ij(theta)
             # theta is the set of parameters; for example see Utils.isotropic_to_full
-            D, beta = params_frequency_dependent(params, omega)
+            D, beta = params_frequency_dependent(params, omega, h=self.h)
             loss_moduli = beta * D
 
             # K_real = \sum K_ij*D_ij/(2.*e)

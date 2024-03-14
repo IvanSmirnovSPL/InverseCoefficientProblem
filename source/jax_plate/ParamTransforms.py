@@ -3,11 +3,13 @@ import jax.numpy as jnp
 
 MODULI_INDICES = ["11", "12", "16", "22", "26", "66"]
 
-def isotropic_to_full(isotropic_params, *args):
-
-    D = isotropic_params[0]
+def isotropic_to_full(isotropic_params, *args, **kwargs):
+    # isotropic_params: E, nu, beta
+    E = isotropic_params[0] * 198e9
     nu = isotropic_params[1]
     beta = isotropic_params[2]
+    G = E / (2 * (1 + nu))
+    D = E * kwargs['h'] ** 3 / (12. * (1. - nu ** 2))
 
     Ds = jnp.array([D, nu * D, 0.0, D, 0.0, D * (1.0 - nu)])
     betas = jnp.full_like(Ds, beta)
